@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copier package.json et installer les dépendances
 COPY package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Copier tout le projet et builder Next.js
 COPY . .
