@@ -16,6 +16,8 @@ services:
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "ta_valeur_ici"
       CLERK_SECRET_KEY: "ta_valeur_ici"
       SIGNING_SECRET: "ta_valeur_ici"
+      NEXT_PUBLIC_GOOGLE_API_KEY: "AIzaSyCdiOlOkpX_KPF-e9HwNqtLYK7Rhoo3eAA"
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: "AIzaSyCdiOlOkpX_KPF-e9HwNqtLYK7Rhoo3eAA"
       NEXT_PUBLIC_WS_URL: "https://api.covoitivoire.com/api/v1"  # utiliser le nom du conteneur backend
       NEXT_PUBLIC_SERVEUR_URL: "http://37.60.241.35:4000/api/v1"
       # NEXT_PUBLIC_SERVEUR_URL: "https://api.covoitivoire.com/api/v1"
