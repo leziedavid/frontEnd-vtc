@@ -31,10 +31,10 @@ export default function SignupPage() {
 
             const res = await createUser(formData);
             if (res.statusCode === 201) {
-                toast.success('Utilisateur créé avec succès');
+                toast.success(res.message || 'Utilisateur créé avec succès');
                 router.push('/auth/login');
             } else {
-                toast.error('Une erreur est survenue lors de la création de l’utilisateur');
+                toast.error( res.message || 'Une erreur est survenue lors de la création de l’utilisateur');
             }
 
         } catch (err: any) {
