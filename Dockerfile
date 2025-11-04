@@ -25,7 +25,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package*.json ./
 
 # Installer uniquement les dépendances production
-RUN npm install --omit=dev
+RUN npm install --omit=dev --legacy-peer-deps
 
 # Exposer le port utilisé par Next.js
 EXPOSE 3000
