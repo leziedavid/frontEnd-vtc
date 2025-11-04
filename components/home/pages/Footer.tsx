@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="bg-black text-white  py-12">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div>
                         <Link href="/" className="flex items-center space-x-2">
                             <div className="relative w-32 h-10 sm:w-40 sm:h-12">
@@ -16,12 +16,14 @@ const Footer = () => {
                             </div>
                         </Link>
                         <p className="text-gray-400">
-                            Le service de VTC équitable où vous fixez le prix.
+                            Covoitivoire est une plateforme de covoiturage moderne qui connecte les voyageurs à travers toute la Côte d’Ivoire.
+                            Notre mission est de rendre chaque déplacement plus simple, économique et agréable.
+                            Que vous voyagiez pour le travail, les études ou le plaisir, nous vous offrons des trajets sécurisés et flexibles dans différents types de véhicules
                         </p>
                     </div>
 
                     <div>
-                        <h4 className="font-semibold mb-4">Services</h4>
+                        <h4 className="font-bold mb-4">Services</h4>
                         <ul className="space-y-2 text-gray-400">
                             <li>VTC</li>
                             <li>Livraison</li>
@@ -30,16 +32,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="font-semibold mb-4">Entreprise</h4>
-                        <ul className="space-y-2 text-gray-400">
-                            <li>À propos</li>
-                            <li>Carrières</li>
-                            <li>Presse</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-semibold mb-4">Suivez-nous</h4>
+                        <h4 className="font-bold mb-4">Suivez-nous</h4>
                         <div className="flex space-x-4">
                             <Facebook className="text-gray-400 hover:text-white cursor-pointer" />
                             <Twitter className="text-gray-400 hover:text-white cursor-pointer" />

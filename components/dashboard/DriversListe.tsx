@@ -66,13 +66,15 @@ export default function DriversListe({ isOpen, onClose }: DriversListeProps) {
                 formData.delete("id");
 
                 res = await updateUser(id, formData);
-                toast.success(res.message || "Utilisateur mis à jour !");
-                if (res.statusCode === 200) setDrawerOpen(false);  fetchUsers();
+                res.statusCode === 200
+                    ? (toast.success(res.message || "Utilisateur ajouté !"), setDrawerOpen(false), fetchUsers())
+                    : toast.error(res.message || "Erreur lors de la création de l'utilisateur");
 
             } else {
                 res = await createUser(formData);
-                toast.success(res.message || "Utilisateur ajouté !");
-                if (res.statusCode === 201) setDrawerOpen(false); fetchUsers();
+                res.statusCode === 201
+                    ? (toast.success(res.message || "Utilisateur ajouté !"), setDrawerOpen(false), fetchUsers())
+                    : toast.error(res.message || "Erreur lors de la création de l'utilisateur");
 
             }
 
@@ -96,9 +98,9 @@ export default function DriversListe({ isOpen, onClose }: DriversListeProps) {
 
         const res = await deleteUser(item.id);
         if (res.statusCode === 200) {
-            toast.success( res.message || "Utilisateur supprimé avec succès");
+            toast.success(res.message || "Utilisateur supprimé avec succès");
             fetchUsers();
-        }else {
+        } else {
             toast.error(res.message || "Erreur lors de la suppression de l’utilisateur");
         }
     }

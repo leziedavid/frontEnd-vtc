@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Role } from "@/types/interfaces";
 import { Eye, EyeOff } from "lucide-react"; // <-- import des icônes
-import { getUserId } from "@/app/middleware";
+import { getUserInfos } from "@/app/middleware";
 
 // ================= VALIDATION ZOD =================
 const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
@@ -80,9 +80,7 @@ export default function SignupUsers({ role, initialValue, onSubmit }: SignupUser
         const count = role === "USER" || role === "ADMIN" ? 1 : 4;
         return [...init, ...Array(count - init.length).fill(null)];
     });
-    const [userId, setUserId] = useState<string>("");
-
-
+    const [userId, setUserId] = useState<string | null>(null);
     // State pour afficher/cacher le mot de passe
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -96,16 +94,16 @@ export default function SignupUsers({ role, initialValue, onSubmit }: SignupUser
 
 
 
-    const fetchRoles = async () => {
-        const res = await getUserId();
+    const fetchUserInfos = async () => {
+        const res = await getUserInfos();
         if (res) {
-            setUserId(res)
+            setUserId(res.partnerId)
             console.log("🔑 User ID:", res)
         }
     }
 
     useEffect(() => {
-        fetchRoles();
+        fetchUserInfos();
     }, [])
 
 
@@ -118,14 +116,14 @@ export default function SignupUsers({ role, initialValue, onSubmit }: SignupUser
             if (data.password) formData.append("password", data.password);
             if (data.id) formData.append("id", data.id);
             formData.append("role", role);
-            formData.append("partnerId", userId);
+            if (userId) formData.append("partnerId", userId);
             if (Array.isArray(data.images)) {
                 data.images.forEach((file) => {
                     if (file instanceof File) formData.append("images", file);
                 });
             }
             if (onSubmit) await onSubmit(formData);
-            toast.success("Utilisateur créé avec succès !");
+            
         } catch (err) {
             console.error(err);
             toast.error("Erreur lors de la création de l'utilisateur");

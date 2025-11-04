@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Table } from "@/components/table/tables/table";
 import { VehicleColumns } from "@/components/table/columns/tableColumns";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
-import { createVehicle, getAllVehicles, updateVehicle } from "@/app/services/vehicleServices";
+import { createVehicle, getAllVehicles, getVehiclesByOwner, updateVehicle } from "@/app/services/vehicleServices";
 import { getUserRole } from "@/app/middleware";
 import AssignDriverToVehicle from "@/components/dashboard/AssignDriverToVehicle";
 import { CarFront, UserPen } from "lucide-react";
@@ -99,13 +99,26 @@ export default function VehiclePage() {
 
     // 🔹 Récupération des véhicules existants
     const fetchVehicles = async () => {
+        if (!roles) return;
+
         try {
-            const res = await getAllVehicles(currentPage);
-            if (res.statusCode === 200 && res.data) {
-                setVehicles(res.data.data);
-                setTotalItems(res.data.total);
-                setCurrentPage(res.data.page);
+
+            if (roles.includes(Role.ADMIN)) {
+                const res = await getAllVehicles(currentPage);
+                if (res.statusCode === 200 && res.data) {
+                    setVehicles(res.data.data);
+                    setTotalItems(res.data.total);
+                    setCurrentPage(res.data.page);
+                }
+            } else if (roles.includes(Role.PARTENAIRE|| Role.DRIVER)) {
+                const res = await getVehiclesByOwner(currentPage);
+                if (res.statusCode === 200 && res.data) {
+                    setVehicles(res.data.data);
+                    setTotalItems(res.data.total);
+                    setCurrentPage(res.data.page);
+                }
             }
+            
         } catch (err: any) {
             console.error(err);
             toast.error(err.message || "Erreur serveur");
@@ -124,23 +137,22 @@ export default function VehiclePage() {
             // Récupère l'id
             const id = formData.get("id") as string | null;
             let res;
+
             if (id) {
                 formData.delete("id");
                 res = await updateVehicle(id, formData);
-                toast.success(res.message || "Véhicule mis à jour !");
-                if (res.statusCode === 200) setDrawerOpen(false);
             } else {
                 res = await createVehicle(formData);
-                toast.success(res.message || "Véhicule ajouté !");
-                if (res.statusCode === 201) setDrawerOpen(false);
             }
 
             if (res.statusCode === 201) {
+                toast.success(res.message || "Véhicule ajouté !");
                 setDrawerOpen(false);
                 fetchVehicles();
                 setEditValue(undefined);
 
             } else if (res.statusCode === 200) {
+                toast.success(res.message || "Véhicule mis à jour !");
                 setDrawerOpen(false);
                 fetchVehicles();
                 setEditValue(undefined);

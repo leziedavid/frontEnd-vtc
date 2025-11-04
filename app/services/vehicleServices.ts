@@ -78,9 +78,7 @@ export const getAllVehicles = async (page: number = 1, limit: number = 10): Prom
 /** --------------------- Véhicules de l’utilisateur connecté avec pagination --------------------- */
 export const getVehiclesByOwner = async (page: number = 1, limit: number = 10): Promise<BaseResponse<Pagination<Vehicle>>> => {
     try {
-        const query = `?page=${page}&limit=${limit}`;
-        // L'API backend déterminera le role et l'id depuis le JWT
-        const response = await secureFetch(`${getBaseUrl()}/vehicle/owner${query}`, { method: 'GET' });
+        const response = await secureFetch(`${getBaseUrl()}/vehicle/owner/drivers?page=${page}&limit=${limit}`, { method: 'GET' });
         return await response.json();
     } catch (error: any) {
         toast.error(error.message || 'Erreur lors de la récupération des véhicules de l’utilisateur');

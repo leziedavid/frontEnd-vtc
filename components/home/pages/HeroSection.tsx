@@ -13,12 +13,12 @@ const HeroSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div className="text-center lg:text-left">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white">
-                            Le prix est juste.
-                            <span className="block text-lime-400 mt-1 md:mt-2">Vous le fixez.</span>
+                            Voyagez autrement avec
+                            <span className="block text-lime-400 mt-1 md:mt-2">Covoitivoire.</span>
                         </h1>
                         <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-white max-w-2xl mx-auto lg:mx-0">
-                            Le premier service de VTC où vous proposez votre prix.
-                            Des trajets équitables et transparents.
+                            Profitez de trajets sécurisés, abordables et confortables à travers toute la Côte d’Ivoire.
+                            Choisissez votre style : Économique, Standard ou Premium — et partez sereinement !
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                             {/* href="/ride" */}
