@@ -38,13 +38,12 @@ export default function LoginForm() {
                 document.cookie = `token=${access_token}; path=/`;
                 toast.success('Connexion réussie !');
 
-                const action = localStorage.getItem('action');
-                if (action === 'createOrder') {
+                const action = localStorage.getItem('page');
+                if (action === 'ride') {
                     localStorage.removeItem('action');
-                    router.push('/trajets');
+                    router.push('/ride');
                     return;
                 }
-                console.log(user.role);
 
                 switch (user.role) {
                     case Role.ADMIN:

@@ -38,8 +38,12 @@ export function Hero() {
                                     Réserver une course
                                 </Button>
                             </Link>
-                            <Link href="/auth/signup" onClick={() => localStorage.setItem('role', 'PARTENAIRE')}>
-                                <Button  size="lg" variant="outline"  className="border-white  font-bold text-black hover:bg-orange-700 hover:text-white"  >
+                            <Link href="/auth/signup" onClick={() => {
+                                localStorage.setItem('role', 'PARTENAIRE');
+                                localStorage.setItem('page', 'ride');
+                            }}
+                            >
+                                <Button size="lg" variant="outline" className="border-white  font-bold text-black hover:bg-orange-700 hover:text-white"  >
                                     S'inscrire pour conduire
                                 </Button>
                             </Link>

@@ -57,7 +57,7 @@ function MobileNav({ lang }: { lang: 'fr' | 'en' }) {
                 </button>
               </div>
               <nav className="space-y-1 text-sm">
-                <Link href="/ride" className="block px-2 py-2 text-gray-800 hover:bg-lime-50 rounded-md transition  font-bold">
+                <Link onClick={() => { localStorage.setItem('page', 'ride'); }} href="/ride" className="block px-2 py-2 text-gray-800 hover:bg-lime-50 rounded-md transition  font-bold">
                   {t.rides}
                 </Link>
                 <Link href="/history" className="block px-2 py-2 text-gray-800 hover:bg-lime-50 rounded-md transition  font-bold">
@@ -93,7 +93,7 @@ export function Navbar() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-4 mx-4 flex-1 text-sm">
-              <Link href="/ride" className="text-gray-700 hover:text-gray-900  font-bold transition">
+              <Link href="/ride" onClick={() => { localStorage.setItem('page', 'ride'); }} className="text-gray-700 hover:text-gray-900  font-bold transition">
                 {t.rides}
               </Link>
               <Link href="/history" className="text-gray-700 hover:text-gray-900  font-bold transition">
